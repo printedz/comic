@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Spectral:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    @apply font-body bg-stone-900 text-stone-900 antialiased;
+  }
+}
+
+@layer utilities {
+  .bg-atmosphere {
+    background-image:
+      radial-gradient(circle at top, rgba(255, 237, 213, 0.85), transparent 55%),
+      radial-gradient(circle at 20% 60%, rgba(254, 215, 170, 0.6), transparent 55%),
+      radial-gradient(circle at 80% 40%, rgba(187, 247, 208, 0.7), transparent 55%),
+      linear-gradient(120deg, #fff7ed 0%, #fef3c7 40%, #ecfccb 100%);
+  }
+
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+}
