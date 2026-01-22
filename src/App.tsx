@@ -65,6 +65,7 @@ const usePanels = () =>
       },
       {
         id: 7,
+        src: "/viñetas/vn7.png",
         chapter: "Capítulo 3 – El Encuentro",
         title: "Viñeta 7",
         subtitle: "Leo se queda al fondo, mirando su móvil.",
@@ -75,6 +76,7 @@ const usePanels = () =>
       },
       {
         id: 8,
+        src: "/viñetas/vn8.png",
         chapter: "Capítulo 4 – Acompañar, No Imponer",
         title: "Viñeta 8",
         subtitle: "Don Bosco se sienta junto a Leo.",
@@ -82,6 +84,7 @@ const usePanels = () =>
       },
       {
         id: 9,
+        src: "/viñetas/vn9.png",
         chapter: "Capítulo 4 – Acompañar, No Imponer",
         title: "Viñeta 9",
         subtitle: "Leo muestra un boceto digital.",
@@ -92,6 +95,7 @@ const usePanels = () =>
       },
       {
         id: 10,
+        src: "/viñetas/vn10.png",
         chapter: "Capítulo 5 – Aprender Juntos",
         title: "Viñeta 10",
         subtitle: "Montaje de escenas en equipo.",
@@ -103,6 +107,7 @@ const usePanels = () =>
       },
       {
         id: 11,
+        src: "/viñetas/vn11.png",
         chapter: "Capítulo 6 – La Alegría que Conecta",
         title: "Viñeta 11",
         subtitle: "Presentación del proyecto.",
@@ -114,6 +119,7 @@ const usePanels = () =>
       },
       {
         id: 12,
+        src: "/viñetas/vn12.png",
         chapter: "Capítulo 7 – Conectados de Verdad",
         title: "Viñeta 12",
         subtitle: "Leo deja el móvil y conversa con otros.",
@@ -182,7 +188,7 @@ export default function App() {
           <div className="relative z-10 flex min-h-screen items-center justify-center px-6 py-12">
             <div className="glass-panel w-full max-w-3xl rounded-[32px] p-8 shadow-2xl md:p-12">
               <p className="text-xs uppercase tracking-[0.6em] text-stone-500">
-                Preambulo
+                Preámbulo
               </p>
               <h1 className="mt-3 font-display text-4xl uppercase tracking-[0.12em] text-stone-900 md:text-5xl">
                 Conectados de Verdad
