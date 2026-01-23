@@ -6,7 +6,7 @@ const usePanels = () =>
     () => [
       {
         id: 1,
-        src: `${baseUrl}viñetas/vn1.png`,
+        src: `${baseUrl}viñetas/vn1.webp`,
         chapter: "Capítulo 1 – Pantallas Encendidas, Corazón Apagado",
         title: "Viñeta 1",
         subtitle: "Plano general: Leo en su habitación.",
@@ -17,7 +17,7 @@ const usePanels = () =>
       },
       {
         id: 2,
-        src: `${baseUrl}viñetas/vn2.png`,
+        src: `${baseUrl}viñetas/vn2.webp`,
         chapter: "Capítulo 1 – Pantallas Encendidas, Corazón Apagado",
         title: "Viñeta 2",
         subtitle: "Primer plano del rostro de Leo.",
@@ -28,7 +28,7 @@ const usePanels = () =>
       },
       {
         id: 3,
-        src: `${baseUrl}viñetas/vn3.png`,
+        src: `${baseUrl}viñetas/vn3.webp`,
         chapter: "Capítulo 2 – Un Mensaje Diferente",
         title: "Viñeta 3",
         subtitle: "Pantalla del móvil.",
@@ -36,7 +36,7 @@ const usePanels = () =>
       },
       {
         id: 4,
-        src: `${baseUrl}viñetas/vn4.png`,
+        src: `${baseUrl}viñetas/vn4.webp`,
         chapter: "Capítulo 2 – Un Mensaje Diferente",
         title: "Viñeta 4",
         subtitle: "Leo duda. Baja el móvil.",
@@ -44,7 +44,7 @@ const usePanels = () =>
       },
       {
         id: 5,
-        src: `${baseUrl}viñetas/vn5.png`,
+        src: `${baseUrl}viñetas/vn5.webp`,
         chapter: "Capítulo 2 – Un Mensaje Diferente",
         title: "Viñeta 5",
         subtitle: "Nuevo mensaje, tono cercano.",
@@ -55,7 +55,7 @@ const usePanels = () =>
       },
       {
         id: 6,
-        src: `${baseUrl}viñetas/vn6.png`,
+        src: `${baseUrl}viñetas/vn6.webp`,
         chapter: "Capítulo 3 – El Encuentro",
         title: "Viñeta 6",
         subtitle: "Centro juvenil con laptops, 3D y pizarras.",
@@ -66,7 +66,7 @@ const usePanels = () =>
       },
       {
         id: 7,
-        src: `${baseUrl}viñetas/vn7.png`,
+        src: `${baseUrl}viñetas/vn7.webp`,
         chapter: "Capítulo 3 – El Encuentro",
         title: "Viñeta 7",
         subtitle: "Leo se queda al fondo, mirando su móvil.",
@@ -77,7 +77,7 @@ const usePanels = () =>
       },
       {
         id: 8,
-        src: `${baseUrl}viñetas/vn8.png`,
+        src: `${baseUrl}viñetas/vn8.webp`,
         chapter: "Capítulo 4 – Acompañar, No Imponer",
         title: "Viñeta 8",
         subtitle: "Don Bosco se sienta junto a Leo.",
@@ -85,7 +85,7 @@ const usePanels = () =>
       },
       {
         id: 9,
-        src: `${baseUrl}viñetas/vn9.png`,
+        src: `${baseUrl}viñetas/vn9.webp`,
         chapter: "Capítulo 4 – Acompañar, No Imponer",
         title: "Viñeta 9",
         subtitle: "Leo muestra un boceto digital.",
@@ -96,7 +96,7 @@ const usePanels = () =>
       },
       {
         id: 10,
-        src: `${baseUrl}viñetas/vn10.png`,
+        src: `${baseUrl}viñetas/vn10.webp`,
         chapter: "Capítulo 5 – Aprender Juntos",
         title: "Viñeta 10",
         subtitle: "Montaje de escenas en equipo.",
@@ -108,7 +108,7 @@ const usePanels = () =>
       },
       {
         id: 11,
-        src: `${baseUrl}viñetas/vn11.png`,
+        src: `${baseUrl}viñetas/vn11.webp`,
         chapter: "Capítulo 6 – La Alegría que Conecta",
         title: "Viñeta 11",
         subtitle: "Presentación del proyecto.",
@@ -120,7 +120,7 @@ const usePanels = () =>
       },
       {
         id: 12,
-        src: `${baseUrl}viñetas/vn12.png`,
+        src: `${baseUrl}viñetas/vn12.webp`,
         chapter: "Capítulo 7 – Conectados de Verdad",
         title: "Viñeta 12",
         subtitle: "Leo deja el móvil y conversa con otros.",
@@ -296,12 +296,12 @@ export default function App() {
                   onClick={(event) => event.stopPropagation()}
                 >
                   <img
-                    src={`${baseUrl}viñetas/cartel.png`}
+                    src={`${baseUrl}viñetas/cartel.webp`}
                     alt="Cartel de la historia"
                     className="absolute inset-0 h-full w-full scale-110 object-cover blur-2xl opacity-80"
                   />
                   <img
-                    src={`${baseUrl}viñetas/cartel.png`}
+                    src={`${baseUrl}viñetas/cartel.webp`}
                     alt="Cartel de la historia"
                     className="relative h-[70vh] w-full object-contain"
                   />
