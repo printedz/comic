@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const baseUrl = import.meta.env.BASE_URL;
 const usePanels = () =>
@@ -138,6 +138,10 @@ export default function App() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
   const [showIntro, setShowIntro] = useState(true);
+  const [showCartel, setShowCartel] = useState(false);
+  const [cartelClosing, setCartelClosing] = useState(false);
+  const [cartelVisible, setCartelVisible] = useState(false);
+  const closeTimeoutRef = useRef<number | null>(null);
 
   const total = panels.length;
   const progress = ((index + 1) / total) * 100;
@@ -159,9 +163,33 @@ export default function App() {
 
   const nextPanel = useCallback(() => goTo(index + 1), [goTo, index]);
   const prevPanel = useCallback(() => goTo(index - 1), [goTo, index]);
+  const closeCartel = useCallback(() => {
+    if (!showCartel || cartelClosing) {
+      return;
+    }
+    setCartelClosing(true);
+    if (closeTimeoutRef.current) {
+      window.clearTimeout(closeTimeoutRef.current);
+    }
+    closeTimeoutRef.current = window.setTimeout(() => {
+      setShowCartel(false);
+      setCartelClosing(false);
+      closeTimeoutRef.current = null;
+    }, 500);
+  }, [cartelClosing, showCartel]);
 
   useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
+      if (showIntro) {
+        return;
+      }
+      if (showCartel) {
+        if (["ArrowRight", " ", "Enter"].includes(event.key)) {
+          event.preventDefault();
+          closeCartel();
+        }
+        return;
+      }
       if (["ArrowRight", " ", "Enter"].includes(event.key)) {
         event.preventDefault();
         nextPanel();
@@ -174,7 +202,31 @@ export default function App() {
 
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [nextPanel, prevPanel]);
+  }, [closeCartel, nextPanel, prevPanel, showCartel, showIntro]);
+
+  useEffect(() => {
+    if (!showCartel) {
+      setCartelVisible(false);
+      return;
+    }
+    const rafId = window.requestAnimationFrame(() => {
+      setCartelVisible(true);
+    });
+    const timeoutId = window.setTimeout(() => {
+      closeCartel();
+    }, 20000);
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.clearTimeout(timeoutId);
+    };
+  }, [closeCartel, showCartel]);
+
+  useEffect(() => {
+    if (!showCartel && closeTimeoutRef.current) {
+      window.clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+  }, [showCartel]);
 
   const panel = panels[index];
   const animationClass =
@@ -212,7 +264,11 @@ export default function App() {
                 </span>
                 <button
                   type="button"
-                  onClick={() => setShowIntro(false)}
+                  onClick={() => {
+                    setShowIntro(false);
+                    setShowCartel(true);
+                    setCartelClosing(false);
+                  }}
                   className="rounded-full bg-stone-900 px-5 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-stone-100 transition hover:-translate-y-0.5 hover:bg-stone-800"
                 >
                   Entrar al comic
@@ -222,6 +278,46 @@ export default function App() {
           </div>
         ) : (
           <div className="relative z-10 flex min-h-screen flex-col px-6 py-8 md:px-12">
+            {showCartel ? (
+              <div
+                className={`absolute inset-0 z-20 flex items-center justify-center bg-stone-950/80 px-6 py-10 text-stone-100 transition-opacity duration-500 ${
+                  cartelClosing || !cartelVisible
+                    ? "pointer-events-none opacity-0"
+                    : "opacity-100"
+                }`}
+                onClick={closeCartel}
+              >
+                <div
+                  className={`relative w-full max-w-5xl overflow-hidden rounded-[32px] border border-white/20 shadow-2xl transition-transform duration-700 ${
+                    cartelClosing || !cartelVisible ? "scale-[1.03]" : "scale-100"
+                  }`}
+                  role="dialog"
+                  aria-modal="true"
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  <img
+                    src={`${baseUrl}viñetas/cartel.png`}
+                    alt="Cartel de la historia"
+                    className="absolute inset-0 h-full w-full scale-110 object-cover blur-2xl opacity-80"
+                  />
+                  <img
+                    src={`${baseUrl}viñetas/cartel.png`}
+                    alt="Cartel de la historia"
+                    className="relative h-[70vh] w-full object-contain"
+                  />
+                  <div className="absolute inset-0 flex items-end justify-center pb-10">
+                    <p className="px-6 text-center font-display text-3xl uppercase tracking-[0.18em] text-stone-100 drop-shadow-[0_6px_18px_rgba(0,0,0,0.7)] md:text-4xl" />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={closeCartel}
+                    className="absolute right-6 top-6 rounded-full bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-stone-800 transition hover:bg-white"
+                  >
+                    Continuar
+                  </button>
+                </div>
+              </div>
+            ) : null}
             <header className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div>
                 <p className="text-xs uppercase tracking-[0.5em] text-stone-600">
