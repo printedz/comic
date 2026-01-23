@@ -280,13 +280,27 @@ export default function App() {
           <div className="relative z-10 flex min-h-screen flex-col px-6 py-8 md:px-12">
             {showCartel ? (
               <div
-                className={`absolute inset-0 z-20 flex items-center justify-center bg-stone-950/80 px-6 py-10 text-stone-100 transition-opacity duration-500 ${
+                className={`absolute inset-0 z-20 flex items-center justify-center bg-stone-950/90 px-6 py-10 text-stone-100 transition-opacity duration-500 ${
                   cartelClosing || !cartelVisible
                     ? "pointer-events-none opacity-0"
                     : "opacity-100"
                 }`}
                 onClick={closeCartel}
               >
+                <div className="pointer-events-none absolute inset-4 overflow-hidden rounded-[36px]">
+                  <img
+                    src={`${baseUrl}viñetas/cartel.webp`}
+                    alt=""
+                    className="h-full w-full scale-125 object-cover blur-3xl"
+                    aria-hidden="true"
+                  />
+                  <div className="absolute inset-0 bg-stone-950/60" />
+                  <div className="absolute inset-x-6 top-6 text-center">
+                    <p className="font-display text-base uppercase tracking-[0.4em] text-stone-100/90 drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] md:text-lg">
+                      Conectados de Verdad: La Historia de Leo
+                    </p>
+                  </div>
+                </div>
                 <div
                   className={`relative w-full max-w-5xl overflow-hidden rounded-[32px] border border-white/20 shadow-2xl transition-transform duration-700 ${
                     cartelClosing || !cartelVisible ? "scale-[1.03]" : "scale-100"
